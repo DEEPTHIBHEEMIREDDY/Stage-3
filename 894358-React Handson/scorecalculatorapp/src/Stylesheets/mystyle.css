@@ -1,0 +1,22 @@
+.Name
+{
+    font-weight:300;
+    color:rgb(255, 0, 242);
+}
+.School
+{
+    color:rgb(20, 50, 220);
+}
+.Total
+{
+    color:rgb(139, 0, 109);
+}
+.formatstyle
+{
+    text-align:center;
+    font-size:large;
+}
+.Score
+{
+    color:forestgreen;
+}
