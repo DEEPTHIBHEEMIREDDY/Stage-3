@@ -1,0 +1,49 @@
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ ls -al
+total 21
+drwxr-xr-x 1 CTS+894221 4096  0 Apr 14 23:02 ./
+drwxr-xr-x 1 CTS+894221 4096  0 Apr 14 22:14 ../
+drwxr-xr-x 1 CTS+894221 4096  0 Apr 14 22:59 .git/
+-rw-r--r-- 1 CTS+894221 4096 31 Apr 14 22:21 welcome.txt
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ touch file1.log
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ mkdir log
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        file1.log
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ touch ~/.gitignore_global
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git config --global core.excludesfile ~/.gitignore_global
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ vi ~/.gitignore_global
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ cat ~/.gitignore_global
+*.log
+log/
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git status --ignored
+On branch master
+Ignored files:
+  (use "git add -f <file>..." to include in what will be committed)
+        file1.log
+
+nothing to commit, working tree clean

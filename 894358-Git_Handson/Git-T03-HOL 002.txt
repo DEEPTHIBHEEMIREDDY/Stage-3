@@ -1,0 +1,170 @@
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git init
+Initialized empty Git repository in C:/gitHandsons/.git/
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git branch GitWork
+fatal: Not a valid object name: 'master'.
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git branch
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ vi file1.txt
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git add .
+warning: LF will be replaced by CRLF in file1.txt.
+The file will have its original line endings in your working directory
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git commit -m "added ffile1.txt"
+[master (root-commit) 04a687b] added ffile1.txt
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file1.txt
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git branch
+* master
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git branch GitWork
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git branch
+  GitWork
+* master
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git checkout GitWork
+Switched to branch 'GitWork'
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ vi hello.xml
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ cat hello.xml
+Data is inserted from GitWork branch
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git add .
+warning: LF will be replaced by CRLF in hello.xml.
+The file will have its original line endings in your working directory
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git commit -m "hello.xml added from GitWork branch"
+[GitWork 8073e19] hello.xml added from GitWork branch
+ 1 file changed, 1 insertion(+)
+ create mode 100644 hello.xml
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git checkout master
+Switched to branch 'master'
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ vi hello.xml
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ cat hello.xml
+Data inserted from master branch
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git add .
+warning: LF will be replaced by CRLF in hello.xml.
+The file will have its original line endings in your working directory
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git commit -m "hello.xml added from master branch"
+[master c4af5a3] hello.xml added from master branch
+ 1 file changed, 1 insertion(+)
+ create mode 100644 hello.xml
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git log --graph --oneline --decorate --all
+* c4af5a3 (HEAD -> master) hello.xml added from master branch
+| * 8073e19 (GitWork) hello.xml added from GitWork branch
+|/
+* 04a687b added ffile1.txt
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git diff master GitWork
+diff --git a/hello.xml b/hello.xml
+index 0472329..c88a8b8 100644
+--- a/hello.xml
++++ b/hello.xml
+@@ -1 +1 @@
+-Data inserted from master branch
++Data is inserted from GitWork branch
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git merge GitWork
+CONFLICT (add/add): Merge conflict in hello.xml
+Auto-merging hello.xml
+Automatic merge failed; fix conflicts and then commit the result.
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git config merge.tool vimdiff
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git mergetool
+Merging:
+hello.xml
+
+Normal merge conflict for 'hello.xml':
+  {local}: created file
+  {remote}: created file
+3 files to edit
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git log --graph --oneline --decorate --all
+* c4af5a3 (HEAD -> master) hello.xml added from master branch
+| * 8073e19 (GitWork) hello.xml added from GitWork branch
+|/
+* 04a687b added ffile1.txt
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git add .
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git commit -m "hello.xml merged"
+[master 9d87afa] hello.xml merged
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ cat hello.xml
+<<<<<<< HEAD
+Data inserted from master branch
+=======
+Data is inserted from GitWork branch
+>>>>>>> GitWork
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git branch
+  GitWork
+* master
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git branch -d GitWork
+Deleted branch GitWork (was 8073e19).
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git branch
+* master
+
+Dell@DESKTOP-DAQ7KD8 MINGW64 ~/OneDrive/Desktop (master)
+$ git log --graph --oneline --decorate
+*   9d87afa (HEAD -> master) hello.xml merged
+|\
+| * 8073e19 hello.xml added from GitWork branch
+* | c4af5a3 hello.xml added from master branch
+|/
+* 04a687b added ffile1.txt
